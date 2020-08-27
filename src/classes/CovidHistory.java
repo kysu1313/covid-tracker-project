@@ -72,8 +72,9 @@ public class CovidHistory {
 	 * Returns a linked hash map of dates and their 
 	 * corresponding number of covid cases.
 	 * 
-	 * LinkedHashMap is used to allow random selection
-	 * of dates from the list
+	 * LinkedHashMap is used to allow both random selection
+	 * of dates from the list as well as selection of
+	 * dates maintaining insertion order.
 	 * @return LinkedHashMap<String, Integer>
 	 * String: Date
 	 * Integer: Number of cases

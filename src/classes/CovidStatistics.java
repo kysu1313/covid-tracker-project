@@ -15,7 +15,7 @@ import com.google.gson.annotations.*;
 
 /**
  * To use this class:
- * 1) Convert the HttpResponse<String> to HttpResponse<JsonNode>
+ * 1) Change the HttpResponse<String> to HttpResponse<JsonNode>
  * 2) Get the JSON body as a string: response.getBody().toString()
  * 3) Pass to class constructor
  * @author kms
@@ -40,6 +40,15 @@ public class CovidStatistics {
 	private String lastReported;
 	private String location;
 	
+	
+	/**
+	 * Constructor method
+	 * 
+	 * Yea I know I need to handle exceptions better, jeez
+	 * 
+	 * @param str
+	 * @throws ParseException
+	 */
 	public CovidStatistics(String str) throws ParseException {
 		
 		jobj = new JSONObject(str);
@@ -56,6 +65,9 @@ public class CovidStatistics {
 		setLocation();
 		
 	}
+	
+	
+	//=================  GETTERS ===============
 	
 	public boolean getError() {
 		return this.error;
@@ -84,6 +96,9 @@ public class CovidStatistics {
 	public String getLocation() {
 		return this.location;
 	}
+	
+	
+	//=================  SETTERS ===============
 	
 	private void setError() {
 		this.error = jobj.getBoolean("error");
