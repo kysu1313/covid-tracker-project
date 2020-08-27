@@ -1,3 +1,4 @@
+package classes;
 
 /**
  * This class accesses the COVID-19 History api. 
@@ -12,14 +13,17 @@
  * parameters using the getter methods
  */
 
-package classes;
+
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class CovidHistory {
 	
-	HistoryObject[] jar;
+	LinkedList<HistoryObject> jar;
+	LinkedHashMap<String, Integer> dataMap = new LinkedHashMap<String, Integer>();
 	
 	/**
 	 * Constructor for this class.
@@ -37,14 +41,14 @@ public class CovidHistory {
 		JSONArray data = obj.getJSONArray("response");
 		
 		// Initialize the array
-		jar = new HistoryObject[data.length()];
+		jar = new LinkedList<>();
 		
 		// Loop through the array creating HistoryObjects for each item
 		for (int i = 0; i < data.length(); i++) {
 			HistoryObject historyObj = new HistoryObject(data.getJSONObject(i));
 			
 			// Add the object to an array for later use
-			jar[i] = historyObj;
+			jar.add(historyObj);
 		}
 	}
 	
@@ -54,8 +58,42 @@ public class CovidHistory {
 	 * Simple method to return the array of HistoryObjects
 	 * @return
 	 */
-	public HistoryObject[] getElements() {
+	public LinkedList<HistoryObject> getLinkedElements() {
 		return this.jar;
 	}
+	
+	/**
+	 * Returns a linked hash map of dates and their 
+	 * corresponding number of covid cases.
+	 * 
+	 * LinkedHashMap is used to allow random selection
+	 * of dates from the list
+	 * @return LinkedHashMap<String, Integer>
+	 * String: Date
+	 * Integer: Number of cases
+	 */
+	public LinkedHashMap<String, Integer> getDateAndCases(){
+		
+		for (HistoryObject j : jar) {
+			dataMap.put(j.getDate(), j.getTotalCases());
+		}
+		
+		return dataMap;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

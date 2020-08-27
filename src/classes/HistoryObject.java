@@ -1,3 +1,4 @@
+package classes;
 
 /**
  * This class inherits from the history constructor.
@@ -5,27 +6,28 @@
  * changed.
  */
 
-package classes;
 
 import org.json.JSONObject;
 
 public final class HistoryObject implements HistoryConstructor {
 	
+	// Cases
 	private int active;
 	private int critical;
-	private String newCases;
 	private int recovered;
 	private int totalCases;
 	private String mPopCases;
 	
+	// Deaths
 	private String mPopDeaths;
-	private String newDeaths;
 	private int totalDeaths;
 	
+	//Location
 	private String continent;
 	private String country;
-	private int population;
+	private int population; 
 	 
+	// Date & time
 	private String time;
 	
 	public HistoryObject(JSONObject obj) {
@@ -37,13 +39,11 @@ public final class HistoryObject implements HistoryConstructor {
 		// Data from the cases JSON object
 		this.active = cases.getInt("active"); 
 		this.critical = cases.getInt("critical");
-//		this.newCases = cases.getString("new");			// TODO: fix this, "new" not string
 		this.recovered = cases.getInt("recovered");
 		this.totalCases = cases.getInt("total");
 		
 		// Data from the deaths JSON object
 		this.mPopDeaths = deaths.getString("1M_pop");
-//		this.newDeaths = deaths.getString("new");		// TODO: fix this, "new" not string
 		this.totalDeaths = deaths.getInt("total");
 		
 		// Data from the main JSON body
@@ -68,12 +68,6 @@ public final class HistoryObject implements HistoryConstructor {
 	}
 
 	@Override
-	public String getNew() {
-		// TODO Auto-generated method stub
-		return this.newCases;
-	}
-
-	@Override
 	public int getRecovered() {
 		// TODO Auto-generated method stub
 		return this.recovered;
@@ -89,12 +83,6 @@ public final class HistoryObject implements HistoryConstructor {
 	public String getMpopCases() {
 		// TODO Auto-generated method stub
 		return this.mPopCases;
-	}
-
-	@Override
-	public String getNewDeaths() {
-		// TODO Auto-generated method stub
-		return this.newDeaths;
 	}
 
 	@Override

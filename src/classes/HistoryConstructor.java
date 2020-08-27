@@ -8,13 +8,11 @@ public interface HistoryConstructor {
 	public String getMpopCases();
 	public int getActive();
 	public int getCritical();
-	public String getNew();
 	public int getRecovered();
 	public int getTotalCases();
 	
 	/* Access data for COVID-19 deaths */
 	public String getMpopDeaths();
-	public String getNewDeaths();
 	public int getTotalDeaths();
 	
 	/* Access data for COVID-19 locations */

@@ -3,6 +3,8 @@
 import classes.*;
 import java.io.*;
 import java.text.ParseException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -31,6 +33,9 @@ import com.squareup.okhttp.Response;
 
 @WebServlet("/hello")
 public class HelloWorld extends HttpServlet {
+	
+	String[] dates;
+	int[] cases;
 	
 	/**
 	 * Intercept the GET request when the page is loaded
@@ -72,15 +77,23 @@ public class HelloWorld extends HttpServlet {
 		
 		CovidHistory hist = new CovidHistory(resp2);
 		
+		LinkedHashMap<?, ?> lhm = hist.getDateAndCases();
 		
+		dates = new String[lhm.size()];
+		cases = new int[lhm.size()];
 		
+		int i = 0;
+		lhm.forEach((key, value) -> {
+			dates[i] = (String) key;
+			cases[i] = (int) value;
+		});
         
 		
 	} catch (UnirestException e) {
-		// TODO Auto-generated catch block
+		System.out.println(e);
 		e.printStackTrace();
 	} catch (ParseException e) {
-		// TODO Auto-generated catch block
+		System.out.println(e);
 		e.printStackTrace();
 	}
     
@@ -97,7 +110,7 @@ public class HelloWorld extends HttpServlet {
        "	<a class=\"twitter-timeline\" data-width=\"220\" data-height=\"400\" data-theme=\"dark\" href=\"https://twitter.com/CDCgov?ref_src=twsrc%5Etfw\">Tweets by CDCgov</a> <script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>	\n" + 
        "</div>" +
        "<table style=\"width:60%\">\n" + 
-       "  <tr>\n" + 
+       "  <tr>\n" +
        "    <th>Servlets</th>\n" + 
        "    <th href=\"src/testPackage/TestServlet2.java\">TestServlet2</th>\n" + 
        		"<th href=\"src/testPackage/TestServlet2.java\">TestServlet2</th>\n" +
