@@ -9,8 +9,10 @@ package classes;
  * Documentation for this api can be found here:
  * https://api-sports.io/documentation/covid-19
  * 
- * The class parses data into easily readable 
- * parameters using the getter methods
+ * The class creates HistoryObjects for each
+ * element in the "cases" JSON object. It adds
+ * those objects to both a LinkedList and a
+ * LinkedHashMap.
  */
 
 
@@ -22,6 +24,8 @@ import org.json.JSONObject;
 
 public class CovidHistory {
 	
+	String[] dates;
+	int[] numCases;
 	LinkedList<HistoryObject> jar;
 	LinkedHashMap<String, Integer> dataMap = new LinkedHashMap<String, Integer>();
 	
@@ -52,7 +56,9 @@ public class CovidHistory {
 		}
 	}
 	
-	// TODO: Create methods to get data from the array
+	
+	
+	//=================  GETTERS ===============
 	
 	/**
 	 * Simple method to return the array of HistoryObjects
@@ -80,6 +86,8 @@ public class CovidHistory {
 		
 		return dataMap;
 	}
+	
+	
 	
 	
 	

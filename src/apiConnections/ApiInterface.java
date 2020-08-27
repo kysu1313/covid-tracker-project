@@ -12,6 +12,5 @@ package apiConnections;
 public interface ApiInterface {
 
 	public String getBody();
-	public int getStatusCode();
 	
 }

@@ -4,6 +4,7 @@ import classes.*;
 import java.io.*;
 import java.text.ParseException;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import javax.servlet.*;
@@ -74,8 +75,10 @@ public class HelloWorld extends HttpServlet {
 		
 		String resp2 = response2.getBody().toString();
 		
-		
+//		out.println(resp2);
 		CovidHistory hist = new CovidHistory(resp2);
+		
+//		out.println("TEST: " + hist.)
 		
 		LinkedHashMap<?, ?> lhm = hist.getDateAndCases();
 		
@@ -87,6 +90,16 @@ public class HelloWorld extends HttpServlet {
 			dates[i] = (String) key;
 			cases[i] = (int) value;
 		});
+		
+		LinkedList<HistoryObject> histList = hist.getLinkedElements();
+		
+		//Testing
+		
+//		for (HistoryObject ho : histList) {
+//			out.println("Critical: " + ho.getCritical());
+//		}
+		
+		
         
 		
 	} catch (UnirestException e) {
